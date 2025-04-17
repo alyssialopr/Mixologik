@@ -1,19 +1,24 @@
-async function connectToPico() {
-    try {
-        const device = await navigator.bluetooth.requestDevice({
-            acceptAllDevices: true,
-            optionalServices: ['battery_service'] // Remplace par ton service GATT
-        });
+const PICO_BASE = 'http://192.168.1.42';  // ← mets ici l'IP que t'affiche la Pico au boot
 
-        const server = await device.gatt.connect();
-        console.log("Connecté à la Pico W !");
-        
-        const service = await server.getPrimaryService('battery_service');
-        const characteristic = await service.getCharacteristic('battery_level');
-
-        const value = await characteristic.readValue();
-        console.log("Valeur reçue :", value.getUint8(0));
-    } catch (error) {
-        console.error("Erreur de connexion Bluetooth :", error);
-    }
+function dispense(name) {
+  fetch(`${PICO_BASE}/dispense?cocktail=${name}`)
+    .then(r => r.json())
+    .then(json => {
+      if (json.status==='ok') {
+        alert(`Cocktail ${name} lancé !`);
+      } else {
+        alert('Erreur : ' + json.error);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Impossible de joindre la Pico à ' + PICO_BASE);
+    });
 }
+
+document.querySelectorAll('.btn-dispense').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.cocktail;
+    dispense(name);
+  });
+});
