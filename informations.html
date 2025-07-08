@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mixologik - Informations Machine</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-fit">
+    <div
+      class="flex flex-col h-screen bg-black fond-cocktails"
+    >
+      <!-- Navigation -->
+      <div class="flex justify-between w-full p-8">
+        <button
+          class="px-6 py-3 bg-gray-600 text-white text-lg rounded-full flex items-center"
+        >
+          <i class="fas fa-arrow-left mr-2"></i>
+          <a href="cocktails.html">Retour aux cocktails</a>
+        </button>
+        <button
+          class="px-6 py-3 bg-purple-600 text-white text-lg rounded-full flex items-center"
+        >
+          <a href="index.html">Accueil</a>
+          <i class="fas fa-home ml-2"></i>
+        </button>
+      </div>
+
+      <!-- Informations Grid -->
+      <div
+        class="big-white-square gap-8 flex justify-center items-center bg-black fond-cocktails flex-1 px-8"
+      >
+        <!-- Statut Machine & Configuration -->
+        <div class="bg-white text-black rounded-xl p-6 w-80">
+          <h2 class="text-xl font-bold text-center mb-4">
+            <i class="fas fa-cog mr-2"></i>
+            STATUT & CONFIGURATION
+          </h2>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">État :</span>
+              <span id="machine-status" class="text-green-600 font-bold">
+                <i class="fas fa-circle text-green-500 mr-1"></i>
+                OPÉRATIONNEL
+              </span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">Température :</span>
+              <span id="temperature" class="text-blue-600 font-bold">18°C</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">Adresse IP :</span>
+              <span id="ip-address" class="text-blue-600 font-bold"
+                >10.2.104.27</span
+              >
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold">Connexion :</span>
+              <span id="connection-status" class="text-green-600 font-bold">
+                <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                CONNECTÉ
+              </span>
+            </div>
+          </div>
+          <div class="flex justify-center mt-6">
+            <button
+              id="refresh-status"
+              class="px-4 py-2 bg-blue-600 text-white text-sm rounded-full flex items-center"
+            >
+              <i class="fas fa-sync-alt mr-2"></i>
+              Actualiser
+            </button>
+          </div>
+        </div>
+
+        <!-- Niveaux des Ingrédients -->
+        <div class="bg-white text-black rounded-xl p-6 w-80">
+          <h2 class="text-xl font-bold text-center mb-4">
+            <i class="fas fa-flask mr-2"></i>
+            NIVEAUX INGRÉDIENTS
+          </h2>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Limonade Vanillée</span>
+                <span class="text-sm text-gray-600">85%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-green-600 h-2 rounded-full"
+                  style="width: 85%"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Jus de Mangue</span>
+                <span class="text-sm text-gray-600">70%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-yellow-500 h-2 rounded-full"
+                  style="width: 70%"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Jus de Citron Vert</span>
+                <span class="text-sm text-gray-600">45%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-orange-500 h-2 rounded-full"
+                  style="width: 45%"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Sirop de Sucre</span>
+                <span class="text-sm text-gray-600">20%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-red-500 h-2 rounded-full"
+                  style="width: 20%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maintenance -->
+        <div class="bg-white text-black rounded-xl p-6 w-80 h-fit">
+          <h2 class="text-xl font-bold text-center mb-4">
+            <i class="fas fa-wrench mr-2"></i>
+            MAINTENANCE
+          </h2>
+          <div class="space-y-4">
+            <button
+              id="clean-system"
+              class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-broom mr-2"></i>
+              Nettoyer le système
+            </button>
+            <button
+              id="calibrate-pumps"
+              class="w-full px-4 py-2 bg-orange-600 text-white text-sm rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-sliders-h mr-2"></i>
+              Calibrer les pompes
+            </button>
+            <button
+              id="diagnostic"
+              class="w-full px-4 py-2 bg-purple-600 text-white text-sm rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-stethoscope mr-2"></i>
+              Diagnostic complet
+            </button>
+            <button
+              id="test-connection"
+              class="w-full px-4 py-2 bg-green-600 text-white text-sm rounded-full flex items-center justify-center"
+            >
+              <i class="fas fa-plug mr-2"></i>
+              Tester connexion
+            </button>
+          </div>
+        </div>
+
+        <!-- Alertes -->
+        <div class="bg-white text-black rounded-xl p-6 w-80 h-fit">
+          <h2 class="text-xl font-bold text-center mb-4">
+            <i class="fas fa-exclamation-triangle mr-2"></i>
+            ALERTES
+          </h2>
+          <div class="space-y-3">
+            <div class="flex items-center p-2 bg-orange-100 rounded-lg">
+              <i class="fas fa-exclamation-circle text-orange-500 mr-2"></i>
+              <span class="text-sm">Niveau sirop faible</span>
+            </div>
+            <div class="flex items-center p-2 bg-green-100 rounded-lg">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span class="text-sm">Système opérationnel</span>
+            </div>
+            <div class="flex items-center p-2 bg-blue-100 rounded-lg">
+              <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+              <span class="text-sm">Maintenance programmée demain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+      // Script pour les fonctionnalités de la page informations
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mettre à jour l'adresse IP depuis main.js
+        function updateIPAddress() {
+          // Récupérer l'IP depuis la constante PICO_BASE dans main.js
+          const ipElement = document.getElementById("ip-address");
+          if (typeof PICO_BASE !== "undefined") {
+            const ip = PICO_BASE.replace("http://", "").replace("https://", "");
+            ipElement.textContent = ip;
+          }
+        }
+
+        // Mettre à jour l'IP au chargement
+        updateIPAddress();
+
+        // Actualiser le statut
+        document
+          .getElementById("refresh-status")
+          .addEventListener("click", function () {
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Actualisation...';
+            setTimeout(() => {
+              this.innerHTML = '<i class="fas fa-sync-alt mr-2"></i>Actualiser';
+              updateIPAddress(); // Mettre à jour l'IP lors du refresh
+            }, 2000);
+          });
+
+        // Tester la connexion
+        document
+          .getElementById("test-connection")
+          .addEventListener("click", function () {
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Test en cours...';
+            setTimeout(() => {
+              this.innerHTML =
+                '<i class="fas fa-plug mr-2"></i>Tester connexion';
+              alert("Connexion testée avec succès !");
+            }, 2000);
+          });
+
+        // Fonctions de maintenance
+        document
+          .getElementById("clean-system")
+          .addEventListener("click", function () {
+            if (
+              confirm(
+                "Êtes-vous sûr de vouloir lancer le nettoyage du système ?"
+              )
+            ) {
+              this.innerHTML =
+                '<i class="fas fa-spinner fa-spin mr-2"></i>Nettoyage...';
+              setTimeout(() => {
+                this.innerHTML =
+                  '<i class="fas fa-broom mr-2"></i>Nettoyer le système';
+                alert("Nettoyage terminé !");
+              }, 5000);
+            }
+          });
+
+        document
+          .getElementById("calibrate-pumps")
+          .addEventListener("click", function () {
+            if (confirm("Êtes-vous sûr de vouloir calibrer les pompes ?")) {
+              this.innerHTML =
+                '<i class="fas fa-spinner fa-spin mr-2"></i>Calibrage...';
+              setTimeout(() => {
+                this.innerHTML =
+                  '<i class="fas fa-sliders-h mr-2"></i>Calibrer les pompes';
+                alert("Calibrage terminé !");
+              }, 3000);
+            }
+          });
+
+        document
+          .getElementById("diagnostic")
+          .addEventListener("click", function () {
+            this.innerHTML =
+              '<i class="fas fa-spinner fa-spin mr-2"></i>Diagnostic...';
+            setTimeout(() => {
+              this.innerHTML =
+                '<i class="fas fa-stethoscope mr-2"></i>Diagnostic complet';
+              alert("Diagnostic terminé - Aucun problème détecté !");
+            }, 4000);
+          });
+      });
+    </script>
+  </body>
+</html>
